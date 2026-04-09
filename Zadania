@@ -147,7 +147,7 @@ namespace Lab5_WszystkieZadania
             }
             else
             {
-                Console.WriteLine("Z podanych punktów nie mozna zbudować trojkata (leza na jednej prostej).");
+                Console.WriteLine("Z podanych punktow nie mozna zbudowac trojkata (leza na jednej prostej).");
             }
         }
 
