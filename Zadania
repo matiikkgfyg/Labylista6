@@ -1,6 +1,56 @@
 using System;
-namespace Lab5_WszystkieZadania
+
+namespace Lab6_WszystkieZadania
 {
+    // === TUTAJ DEFINIUJEMY STRUKTURY ZGODNIE Z WYKŁADEM ===
+    public struct Point
+    {
+        public int x, y;
+        public Point(int x, int y) { this.x = x; this.y = y; }
+        public double CalculateDistance(Point other)
+        {
+            return Math.Sqrt(Math.Pow(other.x - this.x, 2) + Math.Pow(other.y - this.y, 2));
+        }
+    }
+
+    public struct Rectangle
+    {
+        public int x, y;
+        public double width, height;
+        public void DisplayInfo()
+        {
+            Console.WriteLine($"\nNarożniki: ({x},{y}), ({x + width},{y}), ({x},{y + height}), ({x + width},{y + height})");
+            Console.WriteLine($"Pole prostokąta: {Math.Round(width * height, 2)}");
+        }
+    }
+
+    public struct Date
+    {
+        public int day, month, year;
+        public Date(int day, int month, int year) { this.day = day; this.month = month; this.year = year; }
+        public bool IsValid()
+        {
+            return DateTime.TryParse($"{year}-{month}-{day}", out _);
+        }
+        public void Display()
+        {
+            string status = IsValid() ? "jest prawidłowa." : "jest NIEPRAWIDŁOWA.";
+            Console.WriteLine($"Data {day:D2}-{month:D2}-{year} {status}");
+        }
+    }
+
+    public struct Student
+    {
+        public string FirstName, LastName, FieldOfStudy;
+        public int IndexNumber;
+        public double Scholarship;
+        public void DisplayInfo()
+        {
+            Console.WriteLine($"- {FirstName} {LastName}, Kierunek: {FieldOfStudy}, Indeks: {IndexNumber}, Stypendium: {Scholarship} zł");
+        }
+    }
+
+    // === GŁÓWNA KLASA PROGRAMU (TWÓJ SZABLON) ===
     class Program
     {
         static void Main(string[] args)
@@ -9,32 +59,29 @@ namespace Lab5_WszystkieZadania
             while (dziala)
             {
                 Console.Clear();
-                Console.WriteLine("=== MENU GLOWNE - LABY 5 ===");
-                Console.WriteLine("1. Zadanie 1: Operacje na tekscie (GetText)");
-                Console.WriteLine("2. Zadanie 2: Laczenie wyrazow (ConnectWords)");
-                Console.WriteLine("3. Zadanie 3: Kalkulator odsetek (CalculateIntrests)");
-                Console.WriteLine("4. Zadanie 4: Dane trojkata (TriangleData)");
-                Console.WriteLine("5. Zadanie 5: Operacje na dacie i czasie (DateOperations)");
+                Console.WriteLine("=== MENU GLOWNE - LABY 7 ===");
+                Console.WriteLine("1. Zadanie 1: Struktura Point");
+                Console.WriteLine("2. Zadanie 2: Struktura Rectangle");
+                Console.WriteLine("3. Zadanie 3: Struktura Date");
+                Console.WriteLine("4. Zadanie 4: Struktura Student");
                 Console.WriteLine("0. Zakoncz program");
                 Console.Write("\nWybierz numer zadania: ");
                 string wybor = Console.ReadLine();
                 Console.WriteLine("\n------------------------------------\n");
+                
                 switch (wybor)
                 {
                     case "1":
-                        Zadanie1_GetText();
+                        Zadanie1_Point();
                         break;
                     case "2":
-                        Zadanie2_ConnectWords();
+                        Zadanie2_Rectangle();
                         break;
                     case "3":
-                        Zadanie3_CalculateIntrests();
+                        Zadanie3_Date();
                         break;
                     case "4":
-                        Zadanie4_TriangleData();
-                        break;
-                    case "5":
-                        Zadanie5_DateOperations();
+                        Zadanie4_Student();
                         break;
                     case "0":
                         dziala = false;
@@ -44,6 +91,7 @@ namespace Lab5_WszystkieZadania
                         Console.WriteLine("Nieprawidlowy wybor. Sprobuj ponownie.");
                         break;
                 }
+                
                 if (dziala)
                 {
                     Console.WriteLine("\nNacisnij dowolny klawisz, aby powrocic do menu...");
@@ -51,91 +99,61 @@ namespace Lab5_WszystkieZadania
                 }
             }
         }
-        // --- ZADANIE 1 ---
-        static void Zadanie1_GetText()
-        {
-            Console.Write("Wpisz dowolny tekst: ");
-            string text = Console.ReadLine();
 
-            Console.WriteLine("Wielkie litery: " + text.ToUpper());
-            Console.WriteLine("Male litery: " + text.ToLower());
-            Console.WriteLine("Liczba znakow w ciagu: " + text.Length);
+        // --- ZADANIE 1 ---
+        static void Zadanie1_Point()
+        {
+            Point p1 = new Point(2, 3);
+            Point p2 = new Point(5, 7);
+            double distance = p1.CalculateDistance(p2);
+            Console.WriteLine($"Punkt 1: ({p1.x}, {p1.y}) | Punkt 2: ({p2.x}, {p2.y})");
+            Console.WriteLine($"Odległość między punktami: {Math.Round(distance, 2)}");
         }
+
         // --- ZADANIE 2 ---
-        static void Zadanie2_ConnectWords()
+        static void Zadanie2_Rectangle()
         {
-            string[] words = new string[5];
-            for (int i = 0; i < 5; i++)
-            {
-                Console.Write($"Podaj wyraz {i + 1}: ");
-                words[i] = Console.ReadLine();
-            }
-            string joinedWords = string.Join(" ", words);
-            string finalString = "---" + joinedWords + "---";
-            Console.WriteLine("Polaczony tekst: " + finalString);
-            Console.WriteLine("Liczba znakow w nowym ciagu: " + finalString.Length);
+            Rectangle rect = new Rectangle();
+            Console.Write("Podaj X lewego górnego rogu: "); rect.x = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Podaj Y lewego górnego rogu: "); rect.y = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Podaj szerokość: "); rect.width = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Podaj wysokość: "); rect.height = Convert.ToDouble(Console.ReadLine());
+            rect.DisplayInfo();
         }
+
         // --- ZADANIE 3 ---
-        static void Zadanie3_CalculateIntrests()
+        static void Zadanie3_Date()
         {
-            Console.Write("Podaj kwote inwestycji (PLN): ");
-            double amount = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Podaj okres lokaty (w latach): ");
-            int years = Convert.ToInt32(Console.ReadLine());
-            double interestRate = (amount <= 100000) ? 0.05 : 0.07;
-            double finalAmount = amount * Math.Pow(1 + interestRate, years);
-            double interestEarned = finalAmount - amount;
-            Console.WriteLine($"Oprocentowanie: {interestRate * 100}%");
-            Console.WriteLine($"Zarobione odsetki: {Math.Round(interestEarned, 2)} PLN");
-            Console.WriteLine($"Kwota koncowa: {Math.Round(finalAmount, 2)} PLN");
+            Console.Write("Podaj dzień: "); int d = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Podaj miesiąc: "); int m = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Podaj rok: "); int y = Convert.ToInt32(Console.ReadLine());
+            
+            Date userDate = new Date(d, m, y);
+            userDate.Display();
         }
+
         // --- ZADANIE 4 ---
-        static void Zadanie4_TriangleData()
+        static void Zadanie4_Student()
         {
-            Console.WriteLine("Podaj wspolrzedne 3 punktów (A, B, C).");
-            Console.Write("xA: "); double xA = Convert.ToDouble(Console.ReadLine());
-            Console.Write("yA: "); double yA = Convert.ToDouble(Console.ReadLine());
-            Console.Write("xB: "); double xB = Convert.ToDouble(Console.ReadLine());
-            Console.Write("yB: "); double yB = Convert.ToDouble(Console.ReadLine());
-            Console.Write("xC: "); double xC = Convert.ToDouble(Console.ReadLine());
-            Console.Write("yC: "); double yC = Convert.ToDouble(Console.ReadLine());
-            double a = Math.Sqrt(Math.Pow(xB - xA, 2) + Math.Pow(yB - yA, 2));
-            double b = Math.Sqrt(Math.Pow(xC - xB, 2) + Math.Pow(yC - yB, 2));
-            double c = Math.Sqrt(Math.Pow(xA - xC, 2) + Math.Pow(yA - yC, 2));
-            if (a + b > c && a + c > b && b + c > a)
+            Student[] students = new Student[4];
+            Random rnd = new Random();
+
+            for (int i = 0; i < 4; i++)
             {
-                Console.WriteLine("Punkty tworza trojkat.");
-                double perimeter = a + b + c;
-                Console.WriteLine($"Obwod trojkata: {Math.Round(perimeter, 2)}");
-                double p = perimeter / 2;
-                double area = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
-                Console.WriteLine($"Pole trojkata: {Math.Round(area, 2)}");
-                double[] sides = { a, b, c };
-                Array.Sort(sides); 
-                if (Math.Abs(Math.Pow(sides[0], 2) + Math.Pow(sides[1], 2) - Math.Pow(sides[2], 2)) < 0.0001)
-                {
-                    Console.WriteLine("Trojkat jest trojkatem pitagorejskim (prostokatnym).");
-                }
-                else
-                {
-                    Console.WriteLine("Trojkat NIE jest trojkatem pitagorejskim.");
-                }
+                students[i] = new Student();
+                Console.WriteLine($"\nDane studenta {i + 1}:");
+                Console.Write("Imię: "); students[i].FirstName = Console.ReadLine();
+                Console.Write("Nazwisko: "); students[i].LastName = Console.ReadLine();
+                Console.Write("Kierunek: "); students[i].FieldOfStudy = Console.ReadLine();
+                students[i].IndexNumber = rnd.Next(280000, 290001);
+                students[i].Scholarship = rnd.Next(1500, 3001);
             }
-            else
+
+            Console.WriteLine("\n--- ZESTAWIENIE ---");
+            foreach (var student in students)
             {
-                Console.WriteLine("Z podanych punktow nie mozna zbudowac trojkata (leza na jednej prostej).");
+                student.DisplayInfo();
             }
-        }
-        // --- ZADANIE 5 ---
-        static void Zadanie5_DateOperations()
-        {
-            DateTime now = DateTime.Now;
-            Console.WriteLine("Aktualna data i czas: " + now.ToString("dd-MM-yyyy HH:mm:ss"));
-            DateTime futureDate = now.AddDays(7);
-            Console.WriteLine("Data po dodaniu 7 dni: " + futureDate.ToString("dd-MM-yyyy HH:mm:ss"));
-            DateTime endOfYear = new DateTime(now.Year, 12, 31, 23, 59, 59);
-            TimeSpan timeRemaining = endOfYear - now;
-            Console.WriteLine($"Dni do konca biezacego roku: {timeRemaining.Days}");
         }
     }
 }
