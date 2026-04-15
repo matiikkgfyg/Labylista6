@@ -2,7 +2,6 @@ using System;
 
 namespace Lab6_WszystkieZadania
 {
-    // === TUTAJ DEFINIUJEMY STRUKTURY ZGODNIE Z WYKŁADEM ===
     public struct Point
     {
         public int x, y;
@@ -34,7 +33,7 @@ namespace Lab6_WszystkieZadania
         }
         public void Display()
         {
-            string status = IsValid() ? "jest prawidłowa." : "jest NIEPRAWIDŁOWA.";
+            string status = IsValid() ? "jest prawidlowa." : "jest NIEPRAWIDLOWA.";
             Console.WriteLine($"Data {day:D2}-{month:D2}-{year} {status}");
         }
     }
@@ -49,8 +48,6 @@ namespace Lab6_WszystkieZadania
             Console.WriteLine($"- {FirstName} {LastName}, Kierunek: {FieldOfStudy}, Indeks: {IndexNumber}, Stypendium: {Scholarship} zł");
         }
     }
-
-    // === GŁÓWNA KLASA PROGRAMU (TWÓJ SZABLON) ===
     class Program
     {
         static void Main(string[] args)
@@ -107,25 +104,25 @@ namespace Lab6_WszystkieZadania
             Point p2 = new Point(5, 7);
             double distance = p1.CalculateDistance(p2);
             Console.WriteLine($"Punkt 1: ({p1.x}, {p1.y}) | Punkt 2: ({p2.x}, {p2.y})");
-            Console.WriteLine($"Odległość między punktami: {Math.Round(distance, 2)}");
+            Console.WriteLine($"Odleglosc miedzy punktami: {Math.Round(distance, 2)}");
         }
 
         // --- ZADANIE 2 ---
         static void Zadanie2_Rectangle()
         {
             Rectangle rect = new Rectangle();
-            Console.Write("Podaj X lewego górnego rogu: "); rect.x = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Podaj Y lewego górnego rogu: "); rect.y = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Podaj szerokość: "); rect.width = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Podaj wysokość: "); rect.height = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Podaj X lewego gornego rogu: "); rect.x = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Podaj Y lewego gornego rogu: "); rect.y = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Podaj szerokosc: "); rect.width = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Podaj wysokosc: "); rect.height = Convert.ToDouble(Console.ReadLine());
             rect.DisplayInfo();
         }
 
         // --- ZADANIE 3 ---
         static void Zadanie3_Date()
         {
-            Console.Write("Podaj dzień: "); int d = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Podaj miesiąc: "); int m = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Podaj dzien: "); int d = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Podaj miesiac: "); int m = Convert.ToInt32(Console.ReadLine());
             Console.Write("Podaj rok: "); int y = Convert.ToInt32(Console.ReadLine());
             
             Date userDate = new Date(d, m, y);
