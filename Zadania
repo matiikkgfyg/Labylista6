@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Laboratorium6
 {
-    [span_9](start_span)// Zadanie 1: Struktura Student[span_9](end_span)
+    // Zadanie 1: Struktura Student
     public struct Student
     {
         public string Imie;
@@ -18,7 +18,7 @@ namespace Laboratorium6
         }
     }
 
-    [span_10](start_span)// Zadanie 2: Struktura Rectangle[span_10](end_span)
+    // Zadanie 2: Struktura Rectangle
     public struct Rectangle
     {
         public int x, y;
@@ -26,10 +26,8 @@ namespace Laboratorium6
 
         public void Pole()
         {
-            [span_11](start_span)[span_12](start_span)// Obliczenie pola i zaokrąglenie do 2 miejsc po przecinku[span_11](end_span)[span_12](end_span)
             double pole = Math.Round(dlugosc * szerokosc, 2);
 
-            [span_13](start_span)// Współrzędne 4 narożników (zakładając standardowy układ współrzędnych kartezjańskich)[span_13](end_span)
             Console.WriteLine("--- Dane Prostokąta ---");
             Console.WriteLine($"Lewy górny róg: ({x}, {y})");
             Console.WriteLine($"Prawy górny róg: ({x + dlugosc}, {y})");
@@ -39,14 +37,13 @@ namespace Laboratorium6
         }
     }
 
-    [span_14](start_span)// Zadanie 3 i 4: Klasa Animal[span_14](end_span)
+    // Zadanie 3 i 4: Klasa Animal
     class Animal
     {
         public string Name;
         public int Weight;
         public int Height;
 
-        [span_15](start_span)// Konstruktor bezparametrowy - ustawienia domyślne[span_15](end_span)
         public Animal()
         {
             Name = "unknown";
@@ -54,7 +51,6 @@ namespace Laboratorium6
             Height = 0;
         }
 
-        [span_16](start_span)// Konstruktor przyjmujący parametry[span_16](end_span)
         public Animal(string name, int weight, int height)
         {
             Name = name;
@@ -68,14 +64,13 @@ namespace Laboratorium6
         }
     }
 
-    [span_17](start_span)// Zadanie 5: Klasa Car[span_17](end_span)
+    // Zadanie 5: Klasa Car
     class Car
     {
         public string Brand;
         public string Model;
-        public string Year; // Zapisywane jako string np. '1964' zgodnie z treścią
+        public string Year;
 
-        [span_18](start_span)// Konstruktor bezparametrowy[span_18](end_span)
         public Car() { }
 
         public Car(string brand, string model, string year)
@@ -96,18 +91,17 @@ namespace Laboratorium6
         static void Main(string[] args)
         {
             Console.WriteLine("======= ZADANIE 1 =======");
-            Random rnd = new Random(); [span_19](start_span)// Tworzenie obiektu klasy Random[span_19](end_span)
-            Student[] studenci = new Student[4]; [span_20](start_span)// Miejsce na 4 studentów[span_20](end_span)
+            Random rnd = new Random();
+            Student[] studenci = new Student[4];
 
-            [span_21](start_span)// Przykładowe dane i losowanie indeksu oraz stypendium[span_21](end_span)
             for (int i = 0; i < studenci.Length; i++)
             {
                 studenci[i] = new Student();
                 studenci[i].Imie = "Student" + (i + 1);
                 studenci[i].Nazwisko = "Kowalski";
                 studenci[i].KierunekStudiow = "Informatyka";
-                studenci[i].NumerIndeksu = rnd.Next(410000, 450001); [span_22](start_span)// Zakres od 410 000 do 450 000[span_22](end_span)
-                studenci[i].Stypendium = rnd.Next(1200, 3301);       [span_23](start_span)// Zakres od 1200 do 3300[span_23](end_span)
+                studenci[i].NumerIndeksu = rnd.Next(410000, 450001);
+                studenci[i].Stypendium = rnd.Next(1200, 3301);
                 
                 studenci[i].Wyswietl();
             }
@@ -115,7 +109,6 @@ namespace Laboratorium6
             Console.WriteLine("\n======= ZADANIE 2 =======");
             Rectangle rect = new Rectangle();
             
-            [span_24](start_span)// Pobranie danych od użytkownika (zabezpieczone prostym rzutowaniem, aby aplikacja się nie zacięła przy wpisywaniu)[span_24](end_span)
             Console.Write("Podaj pozycję X (lewy górny róg): ");
             rect.x = int.Parse(Console.ReadLine());
             
@@ -131,7 +124,6 @@ namespace Laboratorium6
             rect.Pole();
 
             Console.WriteLine("\n======= ZADANIE 3 i 4 =======");
-            [span_25](start_span)// Tworzenie tablicy z wymaganymi zwierzętami korzystając z konstruktora z parametrami[span_25](end_span)
             Animal[] zwierzeta = new Animal[]
             {
                 new Animal("Tygrys", 300, 120),
@@ -146,24 +138,20 @@ namespace Laboratorium6
             }
 
             Console.WriteLine("\n======= ZADANIE 5 =======");
-            [span_26](start_span)// Samochody powinny być zebrane w Liście[span_26](end_span)
             List<Car> samochody = new List<Car>
             {
-                [span_27](start_span)// Obiekty wymagane z listy[span_27](end_span)
                 new Car("Ford", "Mustang", "1964"),
                 new Car("Volvo", "p1800", "1968"),
                 new Car("BMW", "M1", "1978"),
                 new Car("Toyota", "Celica", "1975"),
-                [span_28](start_span)new Car("Porche", "911", "1965"), // Uwaga: w treści zadania użyto nazwy 'Porche' z literówką[span_28](end_span)
-                
-                [span_29](start_span)// Dwa wybrane spoza listy[span_29](end_span)
+                new Car("Porche", "911", "1965"),
                 new Car("Fiat", "126p", "1980"),
                 new Car("Honda", "Civic", "1999")
             };
 
             foreach (var auto in samochody)
             {
-                auto.Wyswietl(); [span_30](start_span)// Wyświetlanie wprowadzonych samochodów[span_30](end_span)
+                auto.Wyswietl();
             }
         }
     }
