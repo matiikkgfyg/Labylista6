@@ -1,155 +1,169 @@
 using System;
+using System.Collections.Generic;
 
-namespace Lab6_WszystkieZadania
+namespace Laboratorium6
 {
-    public struct Point
+    [span_9](start_span)// Zadanie 1: Struktura Student[span_9](end_span)
+    public struct Student
     {
-        public int x, y;
-        public Point(int x, int y) { this.x = x; this.y = y; }
-        public double CalculateDistance(Point other)
+        public string Imie;
+        public string Nazwisko;
+        public string KierunekStudiow;
+        public int NumerIndeksu;
+        public int Stypendium;
+
+        public void Wyswietl()
         {
-            return Math.Sqrt(Math.Pow(other.x - this.x, 2) + Math.Pow(other.y - this.y, 2));
+            Console.WriteLine($"Student: {Imie} {Nazwisko}, Kierunek: {KierunekStudiow}, Indeks: {NumerIndeksu}, Stypendium: {Stypendium} zł");
         }
     }
 
+    [span_10](start_span)// Zadanie 2: Struktura Rectangle[span_10](end_span)
     public struct Rectangle
     {
         public int x, y;
-        public double width, height;
-        public void DisplayInfo()
+        public double dlugosc, szerokosc;
+
+        public void Pole()
         {
-            Console.WriteLine($"\nNarożniki: ({x},{y}), ({x + width},{y}), ({x},{y + height}), ({x + width},{y + height})");
-            Console.WriteLine($"Pole prostokąta: {Math.Round(width * height, 2)}");
+            [span_11](start_span)[span_12](start_span)// Obliczenie pola i zaokrąglenie do 2 miejsc po przecinku[span_11](end_span)[span_12](end_span)
+            double pole = Math.Round(dlugosc * szerokosc, 2);
+
+            [span_13](start_span)// Współrzędne 4 narożników (zakładając standardowy układ współrzędnych kartezjańskich)[span_13](end_span)
+            Console.WriteLine("--- Dane Prostokąta ---");
+            Console.WriteLine($"Lewy górny róg: ({x}, {y})");
+            Console.WriteLine($"Prawy górny róg: ({x + dlugosc}, {y})");
+            Console.WriteLine($"Lewy dolny róg: ({x}, {y - szerokosc})");
+            Console.WriteLine($"Prawy dolny róg: ({x + dlugosc}, {y - szerokosc})");
+            Console.WriteLine($"Pole powierzchni: {pole}");
         }
     }
 
-    public struct Date
+    [span_14](start_span)// Zadanie 3 i 4: Klasa Animal[span_14](end_span)
+    class Animal
     {
-        public int day, month, year;
-        public Date(int day, int month, int year) { this.day = day; this.month = month; this.year = year; }
-        public bool IsValid()
+        public string Name;
+        public int Weight;
+        public int Height;
+
+        [span_15](start_span)// Konstruktor bezparametrowy - ustawienia domyślne[span_15](end_span)
+        public Animal()
         {
-            return DateTime.TryParse($"{year}-{month}-{day}", out _);
+            Name = "unknown";
+            Weight = 0;
+            Height = 0;
         }
-        public void Display()
+
+        [span_16](start_span)// Konstruktor przyjmujący parametry[span_16](end_span)
+        public Animal(string name, int weight, int height)
         {
-            string status = IsValid() ? "jest prawidlowa." : "jest NIEPRAWIDLOWA.";
-            Console.WriteLine($"Data {day:D2}-{month:D2}-{year} {status}");
+            Name = name;
+            Weight = weight;
+            Height = height;
+        }
+
+        public void Wyswietl()
+        {
+            Console.WriteLine($"Zwierzę: {Name}, Waga: {Weight} kg, Wzrost: {Height} cm");
         }
     }
 
-    public struct Student
+    [span_17](start_span)// Zadanie 5: Klasa Car[span_17](end_span)
+    class Car
     {
-        public string FirstName, LastName, FieldOfStudy;
-        public int IndexNumber;
-        public double Scholarship;
-        public void DisplayInfo()
+        public string Brand;
+        public string Model;
+        public string Year; // Zapisywane jako string np. '1964' zgodnie z treścią
+
+        [span_18](start_span)// Konstruktor bezparametrowy[span_18](end_span)
+        public Car() { }
+
+        public Car(string brand, string model, string year)
         {
-            Console.WriteLine($"- {FirstName} {LastName}, Kierunek: {FieldOfStudy}, Indeks: {IndexNumber}, Stypendium: {Scholarship} zł");
+            Brand = brand;
+            Model = model;
+            Year = year;
+        }
+
+        public void Wyswietl()
+        {
+            Console.WriteLine($"Samochód: {Brand} {Model}, Rok: {Year}");
         }
     }
+
     class Program
     {
         static void Main(string[] args)
         {
-            bool dziala = true;
-            while (dziala)
+            Console.WriteLine("======= ZADANIE 1 =======");
+            Random rnd = new Random(); [span_19](start_span)// Tworzenie obiektu klasy Random[span_19](end_span)
+            Student[] studenci = new Student[4]; [span_20](start_span)// Miejsce na 4 studentów[span_20](end_span)
+
+            [span_21](start_span)// Przykładowe dane i losowanie indeksu oraz stypendium[span_21](end_span)
+            for (int i = 0; i < studenci.Length; i++)
             {
-                Console.Clear();
-                Console.WriteLine("=== MENU GLOWNE - LABY 7 ===");
-                Console.WriteLine("1. Zadanie 1: Struktura Point");
-                Console.WriteLine("2. Zadanie 2: Struktura Rectangle");
-                Console.WriteLine("3. Zadanie 3: Struktura Date");
-                Console.WriteLine("4. Zadanie 4: Struktura Student");
-                Console.WriteLine("0. Zakoncz program");
-                Console.Write("\nWybierz numer zadania: ");
-                string wybor = Console.ReadLine();
-                Console.WriteLine("\n------------------------------------\n");
+                studenci[i] = new Student();
+                studenci[i].Imie = "Student" + (i + 1);
+                studenci[i].Nazwisko = "Kowalski";
+                studenci[i].KierunekStudiow = "Informatyka";
+                studenci[i].NumerIndeksu = rnd.Next(410000, 450001); [span_22](start_span)// Zakres od 410 000 do 450 000[span_22](end_span)
+                studenci[i].Stypendium = rnd.Next(1200, 3301);       [span_23](start_span)// Zakres od 1200 do 3300[span_23](end_span)
                 
-                switch (wybor)
-                {
-                    case "1":
-                        Zadanie1_Point();
-                        break;
-                    case "2":
-                        Zadanie2_Rectangle();
-                        break;
-                    case "3":
-                        Zadanie3_Date();
-                        break;
-                    case "4":
-                        Zadanie4_Student();
-                        break;
-                    case "0":
-                        dziala = false;
-                        Console.WriteLine("Koniec programu.");
-                        break;
-                    default:
-                        Console.WriteLine("Nieprawidlowy wybor. Sprobuj ponownie.");
-                        break;
-                }
-                
-                if (dziala)
-                {
-                    Console.WriteLine("\nNacisnij dowolny klawisz, aby powrocic do menu...");
-                    Console.ReadKey();
-                }
+                studenci[i].Wyswietl();
             }
-        }
 
-        // --- ZADANIE 1 ---
-        static void Zadanie1_Point()
-        {
-            Point p1 = new Point(2, 3);
-            Point p2 = new Point(5, 7);
-            double distance = p1.CalculateDistance(p2);
-            Console.WriteLine($"Punkt 1: ({p1.x}, {p1.y}) | Punkt 2: ({p2.x}, {p2.y})");
-            Console.WriteLine($"Odleglosc miedzy punktami: {Math.Round(distance, 2)}");
-        }
-
-        // --- ZADANIE 2 ---
-        static void Zadanie2_Rectangle()
-        {
+            Console.WriteLine("\n======= ZADANIE 2 =======");
             Rectangle rect = new Rectangle();
-            Console.Write("Podaj X lewego gornego rogu: "); rect.x = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Podaj Y lewego gornego rogu: "); rect.y = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Podaj szerokosc: "); rect.width = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Podaj wysokosc: "); rect.height = Convert.ToDouble(Console.ReadLine());
-            rect.DisplayInfo();
-        }
-
-        // --- ZADANIE 3 ---
-        static void Zadanie3_Date()
-        {
-            Console.Write("Podaj dzien: "); int d = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Podaj miesiac: "); int m = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Podaj rok: "); int y = Convert.ToInt32(Console.ReadLine());
             
-            Date userDate = new Date(d, m, y);
-            userDate.Display();
-        }
+            [span_24](start_span)// Pobranie danych od użytkownika (zabezpieczone prostym rzutowaniem, aby aplikacja się nie zacięła przy wpisywaniu)[span_24](end_span)
+            Console.Write("Podaj pozycję X (lewy górny róg): ");
+            rect.x = int.Parse(Console.ReadLine());
+            
+            Console.Write("Podaj pozycję Y (lewy górny róg): ");
+            rect.y = int.Parse(Console.ReadLine());
+            
+            Console.Write("Podaj długość prostokąta: ");
+            rect.dlugosc = double.Parse(Console.ReadLine());
+            
+            Console.Write("Podaj szerokość prostokąta: ");
+            rect.szerokosc = double.Parse(Console.ReadLine());
 
-        // --- ZADANIE 4 ---
-        static void Zadanie4_Student()
-        {
-            Student[] students = new Student[4];
-            Random rnd = new Random();
+            rect.Pole();
 
-            for (int i = 0; i < 4; i++)
+            Console.WriteLine("\n======= ZADANIE 3 i 4 =======");
+            [span_25](start_span)// Tworzenie tablicy z wymaganymi zwierzętami korzystając z konstruktora z parametrami[span_25](end_span)
+            Animal[] zwierzeta = new Animal[]
             {
-                students[i] = new Student();
-                Console.WriteLine($"\nDane studenta {i + 1}:");
-                Console.Write("Imię: "); students[i].FirstName = Console.ReadLine();
-                Console.Write("Nazwisko: "); students[i].LastName = Console.ReadLine();
-                Console.Write("Kierunek: "); students[i].FieldOfStudy = Console.ReadLine();
-                students[i].IndexNumber = rnd.Next(280000, 290001);
-                students[i].Scholarship = rnd.Next(1500, 3001);
+                new Animal("Tygrys", 300, 120),
+                new Animal("Slon", 4500, 350),
+                new Animal("Kapibara", 35, 30),
+                new Animal("Kon polski", 400, 180)
+            };
+
+            foreach (var zwierze in zwierzeta)
+            {
+                zwierze.Wyswietl();
             }
 
-            Console.WriteLine("\n--- ZESTAWIENIE ---");
-            foreach (var student in students)
+            Console.WriteLine("\n======= ZADANIE 5 =======");
+            [span_26](start_span)// Samochody powinny być zebrane w Liście[span_26](end_span)
+            List<Car> samochody = new List<Car>
             {
-                student.DisplayInfo();
+                [span_27](start_span)// Obiekty wymagane z listy[span_27](end_span)
+                new Car("Ford", "Mustang", "1964"),
+                new Car("Volvo", "p1800", "1968"),
+                new Car("BMW", "M1", "1978"),
+                new Car("Toyota", "Celica", "1975"),
+                [span_28](start_span)new Car("Porche", "911", "1965"), // Uwaga: w treści zadania użyto nazwy 'Porche' z literówką[span_28](end_span)
+                
+                [span_29](start_span)// Dwa wybrane spoza listy[span_29](end_span)
+                new Car("Fiat", "126p", "1980"),
+                new Car("Honda", "Civic", "1999")
+            };
+
+            foreach (var auto in samochody)
+            {
+                auto.Wyswietl(); [span_30](start_span)// Wyświetlanie wprowadzonych samochodów[span_30](end_span)
             }
         }
     }
