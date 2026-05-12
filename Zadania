@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace Laboratorium6
 {
-    // Zgodnie z wytycznymi z wykladu: struktury definiujemy poza klasa Program!
     // Zadanie 1
     public struct Student
     {
@@ -103,11 +102,8 @@ namespace Laboratorium6
                 studenci[i].Imie = "Student" + (i + 1);
                 studenci[i].Nazwisko = "Kowalski";
                 studenci[i].KierunekStudiow = "Informatyka";
-                
-                // Losowanie z przedzialow podanych w zadaniu 1
                 studenci[i].NumerIndeksu = rnd.Next(410000, 450001);
                 studenci[i].Stypendium = rnd.Next(1200, 3301);
-                
                 studenci[i].Wyswietl();
             }
 
