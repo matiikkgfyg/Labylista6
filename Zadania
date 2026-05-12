@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace Laboratorium6
 {
-// Zadanie 1
+    // Zgodnie z wytycznymi z wykladu: struktury definiujemy poza klasa Program!
+    // Zadanie 1
     public struct Student
     {
         public string Imie;
@@ -14,11 +15,11 @@ namespace Laboratorium6
 
         public void Wyswietl()
         {
-            Console.WriteLine($"Student: {Imie} {Nazwisko}, Kierunek: {KierunekStudiow}, Indeks: {NumerIndeksu}, Stypendium: {Stypendium} zł");
+            Console.WriteLine($"Student: {Imie} {Nazwisko}, Kierunek: {KierunekStudiow}, Indeks: {NumerIndeksu}, Stypendium: {Stypendium} zl");
         }
     }
 
-    // Zadanie 2 
+    // Zadanie 2
     public struct Rectangle
     {
         public int x, y;
@@ -27,23 +28,23 @@ namespace Laboratorium6
         public void Pole()
         {
             double pole = Math.Round(dlugosc * szerokosc, 2);
-
             Console.WriteLine("--- Dane Prostokata ---");
-            Console.WriteLine($"Lewy górny rog: ({x}, {y})");
-            Console.WriteLine($"Prawy górny rog: ({x + dlugosc}, {y})");
+            Console.WriteLine($"Lewy gorny rog: ({x}, {y})");
+            Console.WriteLine($"Prawy gorny rog: ({x + dlugosc}, {y})");
             Console.WriteLine($"Lewy dolny rog: ({x}, {y - szerokosc})");
             Console.WriteLine($"Prawy dolny rog: ({x + dlugosc}, {y - szerokosc})");
             Console.WriteLine($"Pole powierzchni: {pole}");
         }
     }
 
-    // Zadanie 3 i 4: Klasa Animal
+    // Zadanie 3.1
     class Animal
     {
         public string Name;
         public int Weight;
         public int Height;
 
+        // Zadanie 3.2
         public Animal()
         {
             Name = "unknown";
@@ -51,6 +52,7 @@ namespace Laboratorium6
             Height = 0;
         }
 
+        // Zadanie 4
         public Animal(string name, int weight, int height)
         {
             Name = name;
@@ -64,13 +66,14 @@ namespace Laboratorium6
         }
     }
 
-    // Zadanie 5: Klasa Car
+    // Zadanie 5.1
     class Car
     {
         public string Brand;
         public string Model;
         public string Year;
 
+        // Zadanie 5.2
         public Car() { }
 
         public Car(string brand, string model, string year)
@@ -100,6 +103,8 @@ namespace Laboratorium6
                 studenci[i].Imie = "Student" + (i + 1);
                 studenci[i].Nazwisko = "Kowalski";
                 studenci[i].KierunekStudiow = "Informatyka";
+                
+                // Losowanie z przedzialow podanych w zadaniu 1
                 studenci[i].NumerIndeksu = rnd.Next(410000, 450001);
                 studenci[i].Stypendium = rnd.Next(1200, 3301);
                 
@@ -145,16 +150,14 @@ namespace Laboratorium6
                 new Car("BMW", "M1", "1978"),
                 new Car("Toyota", "Celica", "1975"),
                 new Car("Porche", "911", "1965"),
-                new Car("Fiat", "126p", "1980"),
-                new Car("Honda", "Civic", "1999")
+                new Car("Fiat", "126p", "1980"),  // Wlasny
+                new Car("Honda", "Civic", "1999") // Wlasny
             };
 
             foreach (var auto in samochody)
             {
                 auto.Wyswietl();
             }
-
-            Console.WriteLine("\nNacisnij dowolny klawisz, aby zakończyć...");
             Console.ReadKey();
         }
     }
