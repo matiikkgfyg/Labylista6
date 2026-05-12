@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Laboratorium6
 {
-    // Zadanie 1: Struktura Student
+// Zadanie 1
     public struct Student
     {
         public string Imie;
@@ -18,7 +18,7 @@ namespace Laboratorium6
         }
     }
 
-    // Zadanie 2: Struktura Rectangle
+    // Zadanie 2 
     public struct Rectangle
     {
         public int x, y;
@@ -28,11 +28,11 @@ namespace Laboratorium6
         {
             double pole = Math.Round(dlugosc * szerokosc, 2);
 
-            Console.WriteLine("--- Dane Prostokąta ---");
-            Console.WriteLine($"Lewy górny róg: ({x}, {y})");
-            Console.WriteLine($"Prawy górny róg: ({x + dlugosc}, {y})");
-            Console.WriteLine($"Lewy dolny róg: ({x}, {y - szerokosc})");
-            Console.WriteLine($"Prawy dolny róg: ({x + dlugosc}, {y - szerokosc})");
+            Console.WriteLine("--- Dane Prostokata ---");
+            Console.WriteLine($"Lewy górny rog: ({x}, {y})");
+            Console.WriteLine($"Prawy górny rog: ({x + dlugosc}, {y})");
+            Console.WriteLine($"Lewy dolny rog: ({x}, {y - szerokosc})");
+            Console.WriteLine($"Prawy dolny rog: ({x + dlugosc}, {y - szerokosc})");
             Console.WriteLine($"Pole powierzchni: {pole}");
         }
     }
@@ -60,7 +60,7 @@ namespace Laboratorium6
 
         public void Wyswietl()
         {
-            Console.WriteLine($"Zwierzę: {Name}, Waga: {Weight} kg, Wzrost: {Height} cm");
+            Console.WriteLine($"Zwierze: {Name}, Waga: {Weight} kg, Wzrost: {Height} cm");
         }
     }
 
@@ -82,7 +82,7 @@ namespace Laboratorium6
 
         public void Wyswietl()
         {
-            Console.WriteLine($"Samochód: {Brand} {Model}, Rok: {Year}");
+            Console.WriteLine($"Samochod: {Brand} {Model}, Rok: {Year}");
         }
     }
 
@@ -109,16 +109,16 @@ namespace Laboratorium6
             Console.WriteLine("\n======= ZADANIE 2 =======");
             Rectangle rect = new Rectangle();
             
-            Console.Write("Podaj pozycję X (lewy górny róg): ");
+            Console.Write("Podaj pozycje X (lewy gorny rog): ");
             rect.x = int.Parse(Console.ReadLine());
             
-            Console.Write("Podaj pozycję Y (lewy górny róg): ");
+            Console.Write("Podaj pozycje Y (lewy gorny rog): ");
             rect.y = int.Parse(Console.ReadLine());
             
-            Console.Write("Podaj długość prostokąta: ");
+            Console.Write("Podaj dlugosc prostokata: ");
             rect.dlugosc = double.Parse(Console.ReadLine());
             
-            Console.Write("Podaj szerokość prostokąta: ");
+            Console.Write("Podaj szerokosc prostokata: ");
             rect.szerokosc = double.Parse(Console.ReadLine());
 
             rect.Pole();
@@ -153,6 +153,9 @@ namespace Laboratorium6
             {
                 auto.Wyswietl();
             }
+
+            Console.WriteLine("\nNacisnij dowolny klawisz, aby zakończyć...");
+            Console.ReadKey();
         }
     }
 }
