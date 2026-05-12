@@ -146,10 +146,9 @@ namespace Laboratorium6
                 new Car("BMW", "M1", "1978"),
                 new Car("Toyota", "Celica", "1975"),
                 new Car("Porche", "911", "1965"),
-                new Car("Fiat", "126p", "1980"),  // Wlasny
-                new Car("Honda", "Civic", "1999") // Wlasny
+                new Car("Fiat", "126p", "1980"),  // Wlasny1
+                new Car("Honda", "Civic", "1999") // Wlasny2
             };
-
             foreach (var auto in samochody)
             {
                 auto.Wyswietl();
