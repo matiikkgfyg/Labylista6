@@ -130,7 +130,7 @@ namespace Laboratorium6
                 new Animal("Tygrys", 300, 120),
                 new Animal("Slon", 4500, 350),
                 new Animal("Kapibara", 35, 30),
-                new Animal("Kon polski", 400, 180)
+                new Animal("Kon", 400, 180)
             };
 
             foreach (var zwierze in zwierzeta)
@@ -145,14 +145,17 @@ namespace Laboratorium6
                 new Car("Volvo", "p1800", "1968"),
                 new Car("BMW", "M1", "1978"),
                 new Car("Toyota", "Celica", "1975"),
-                new Car("Porche", "911", "1965"),
+                new Car("Porsche", "911", "1965"),
                 new Car("Fiat", "126p", "1980"),  // Wlasny1
                 new Car("Honda", "Civic", "1999") // Wlasny2
             };
+            
             foreach (var auto in samochody)
             {
                 auto.Wyswietl();
             }
+            
+            Console.WriteLine("\nWciśnij dowolny klawisz, aby zakończyć...");
             Console.ReadKey();
         }
     }
